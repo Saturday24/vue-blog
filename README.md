@@ -1,4 +1,4 @@
-# notepad
+# vue blog template
 
 > a vue blog
 
