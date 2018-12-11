@@ -1,7 +1,7 @@
 {
-  "name": "notepad",
+  "name": "vueBlog",
   "version": "1.0.0",
-  "description": "a web notepad",
+  "description": "Adaptive blog templates using vue-cli",
   "author": "csf_mac <18340836866@163.com>",
   "private": true,
   "scripts": {
