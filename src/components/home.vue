@@ -3,18 +3,44 @@
     <div class="bgBanner">
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
+      <note-abstract :abstractItems='abstractItems'></note-abstract>
     </div>
   </div>
 </template>
 
 <script>
+import noteAbstract from 'base/abstract'
+
 export default {
   name: 'home',
   data () {
     return {
       bannerTitle: 'Leo Chen',
-      bannerDesc: 'Not Perfect, So Need To Learn'
+      bannerDesc: 'Not Perfect, So Need To Learn',
+      abstractItems: [
+          {
+            title: 'isajdnaksndka',
+            desc: 'isajdnaksndka',
+            who: 'isajdnaksndka',
+            time: 'isajdnaksndka'
+          },
+          {
+            title: 'isajdnaksndka',
+            desc: 'isajdnaksndka',
+            who: 'isajdnaksndka',
+            time: 'isajdnaksndka'
+          },
+          {
+            title: 'isajdnaksndka',
+            desc: 'isajdnaksndka',
+            who: 'isajdnaksndka',
+            time: 'isajdnaksndka'
+          }
+      ]
     }
+  },
+  components: {
+    noteAbstract
   }
 }
 </script>
@@ -25,7 +51,7 @@ export default {
   .bgBanner {
       width: 100%;
       height: 0;
-      padding-top: 31.25%;
+      padding-top: 45%;
       background-image: url(../common/image/home-bg.jpg);
       background-repeat: no-repeat;
       background-size: 100% 100%;

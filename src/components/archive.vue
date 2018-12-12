@@ -25,7 +25,7 @@ export default {
   .bgBanner {
       width: 100%;
       height: 0;
-      padding-top: 31.25%;
+      padding-top: 45%;
       background-image: url(../common/image/post-bg.jpg);
       background-repeat: no-repeat;
       background-size: 100% 100%;

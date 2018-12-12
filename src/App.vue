@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <!-- nav title -->
-    <div class="logo">Leo's Blog</div>
-    <!-- nav bar -->
-    <ul class="navBar" v-show="isShowPC">
-      <li class="navBarItem" v-for="(navBarItem, idx) in navBarItems" @click="selectNav(idx)">{{navBarItem.title}}</li>
-    </ul>
-    <div class="listBar" v-show="isShowMobile" @click='showList'>
-      <ul class="listItems" v-show='isShowList'>
-        <li class="listBarItem" v-for="(navBarItem, idx) in navBarItems" @click="selectNav(idx)">{{navBarItem.title}}</li>
+    <div class="content">
+      <div class="logo">Leo's Blog</div>
+      <!-- nav bar -->
+      <ul class="navBar" v-show="isShowPC">
+        <li class="navBarItem" v-for="(navBarItem, idx) in navBarItems" @click="selectNav(idx)">{{navBarItem.title}}</li>
       </ul>
-    </div>
+      <div class="listBar" v-show="isShowMobile" @click='showList'>
+        <ul class="listItems" v-show='isShowList'>
+          <li class="listBarItem" v-for="(navBarItem, idx) in navBarItems" @click="selectNav(idx)">{{navBarItem.title}}</li>
+        </ul>
+      </div>
+      </div>
+    <!-- <footer class="footer">cdscs</footer> -->
     <router-view/>
   </div>
 </template>
@@ -70,12 +73,25 @@ export default {
   list-style: none;
   outline: none;
 }
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo, .navBar, .listBar {
@@ -147,6 +163,7 @@ export default {
   color: #7e7e7e;
   font-size: 16px;
 }
+
 
 </style>
 
