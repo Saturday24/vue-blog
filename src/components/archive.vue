@@ -3,11 +3,18 @@
     <div class="bgBanner">
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
+      <!-- <note-abstract :abstractItems='abstractItems' class='abstractItems'></note-abstract> -->
+      <mark-down></mark-down>
+      <footer-link></footer-link>
     </div>
   </div>
 </template>
 
 <script>
+import noteAbstract from 'base/abstract'
+import footerLink from 'base/footer'
+import markDown from 'base/markdown'
+
 export default {
   name: 'archive',
   data () {
@@ -15,6 +22,15 @@ export default {
       bannerTitle: 'Leo Chen',
       bannerDesc: 'Not Perfect, So Need To Learn'
     }
+  },
+  created() {
+    // alert('dd')
+    readMd()
+  },
+  components: {
+    noteAbstract,
+    footerLink,
+    markDown
   }
 }
 </script>

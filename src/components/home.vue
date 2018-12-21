@@ -3,13 +3,15 @@
     <div class="bgBanner">
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
-      <note-abstract :abstractItems='abstractItems'></note-abstract>
+      <note-abstract :abstractItems='abstractItems' class='abstractItems'></note-abstract>
+      <footer-link></footer-link>
     </div>
   </div>
 </template>
 
 <script>
 import noteAbstract from 'base/abstract'
+import footerLink from 'base/footer'
 
 export default {
   name: 'home',
@@ -39,8 +41,35 @@ export default {
       ]
     }
   },
+  created() {
+    this._getMd();
+  },
+  methods: {
+    _getMd() {
+      let that = this
+      let mdList = []
+      this.$get('mdlist', {
+      }).then((res) => {
+        mdList = res;
+        for (let i = 0; i < mdList.length; i++) {
+          that.$get(`md/${mdList[i]}`, {
+          }).then((res) => {
+            console.log(res);
+          }).catch((err) => {
+            console.log(err);
+            console.log('出现错误');
+          })
+          console.log(mdList[i]);
+        }
+      }).catch((err) => {
+        console.log("出现错误")
+        console.log(err)
+      })
+    }
+  },
   components: {
-    noteAbstract
+    noteAbstract,
+    footerLink
   }
 }
 </script>
@@ -75,5 +104,10 @@ export default {
     margin-left: -110px;
     margin-top: 20px;
     font-size: 18px;
+  }
+
+  /* abstractItems */
+  .abstractItems {
+    margin-bottom: 50px;
   }
 </style>

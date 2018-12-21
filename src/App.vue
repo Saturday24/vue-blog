@@ -13,7 +13,6 @@
         </ul>
       </div>
       </div>
-    <!-- <footer class="footer">cdscs</footer> -->
     <router-view/>
   </div>
 </template>
