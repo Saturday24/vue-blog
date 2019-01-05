@@ -1,6 +1,6 @@
 <template>
   <div id="abstract">
-    <div class="abstract-items" v-for='(abstractItem, abstractIdx) in abstractItems'>
+    <div class="abstract-items" v-for='(abstractItem, abstractIdx) in abstractItems' @click='gotoDetail(abstractItem, abstractIdx)'>
       <p class="abstract-title">{{abstractItem.title}}</p>
       <p class="abstract-desc">{{abstractItem.desc}}</p>
       <p class="abstract-post">
@@ -25,6 +25,14 @@ export default {
     abstractItems: {
       type: Array,
       default: []
+    }
+  },
+  methods: {
+    gotoDetail(item, idx) {
+      this.$emit('gotoDetail', {
+        item: item,
+        idx: idx
+      })
     }
   }
 }

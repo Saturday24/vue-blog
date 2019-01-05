@@ -3,7 +3,7 @@
     <div class="bgBanner">
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
-      <note-abstract :abstractItems='abstractItems' class='abstractItems'></note-abstract>
+      <note-abstract :abstractItems='abstractItems' class='abstractItems' @gotoDetail='gotoDetail'></note-abstract>
       <footer-link></footer-link>
     </div>
   </div>
@@ -19,51 +19,37 @@ export default {
     return {
       bannerTitle: 'Leo Chen',
       bannerDesc: 'Not Perfect, So Need To Learn',
-      abstractItems: [
-          {
-            title: 'isajdnaksndka',
-            desc: 'isajdnaksndka',
-            who: 'isajdnaksndka',
-            time: 'isajdnaksndka'
-          },
-          {
-            title: 'isajdnaksndka',
-            desc: 'isajdnaksndka',
-            who: 'isajdnaksndka',
-            time: 'isajdnaksndka'
-          },
-          {
-            title: 'isajdnaksndka',
-            desc: 'isajdnaksndka',
-            who: 'isajdnaksndka',
-            time: 'isajdnaksndka'
-          }
-      ]
+      abstractItems: []
     }
   },
   created() {
     this._getMd();
   },
   methods: {
+    // getFileName(){},
     _getMd() {
       let that = this
       let mdList = []
       this.$get('mdlist', {
       }).then((res) => {
-        mdList = res;
-        for (let i = 0; i < mdList.length; i++) {
-          that.$get(`md/${mdList[i]}`, {
-          }).then((res) => {
-            console.log(res);
-          }).catch((err) => {
-            console.log(err);
-            console.log('出现错误');
-          })
-          console.log(mdList[i]);
-        }
+        console.log(res);
+        this.abstractItems = res.md_ctx;
       }).catch((err) => {
         console.log("出现错误")
         console.log(err)
+      })
+    },
+    gotoDetail(obj) {
+      let title = obj.item.title
+      let time = obj.item.time
+      let who = obj.item.who
+      this.$router.push({
+        path: '/noteDetail',
+        query: {
+          title: title,
+          time: time,
+          by: who
+        }
       })
     }
   },

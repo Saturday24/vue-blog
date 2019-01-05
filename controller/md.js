@@ -20,29 +20,38 @@ app.all("*",function(req,res,next){
 // 遍历获取markdown文件夹
 // cp.exec('cp -r ./markdown/test.md ./markdown/cp.md');
 var md_name = [];
+var md_ctx = [];
 fs.readdir('./markdown/', (err, files) => {
 	for(let i = 0; i < files.length; i++) {
-		md_name.push(path.parse(files[i])['name'].toString());
-		mdTxt(path.parse(files[i])['name'].toString());
+		let fileName = path.parse(files[i])['name'].toString();
+		let idx = fileName.indexOf('&');
+		md_name.push(fileName.substr(0,idx));
+		md_ctx.push({
+			time: fileName.substr(0,idx),
+			desc: 'This is the description!',
+			title: fileName.substr(idx+1,fileName.length),
+			who: 'me'
+		});
+		mdList(md_name, md_ctx);
+		mdTxt(fileName.substr(0,idx), fileName);
 	}
-	mdList(md_name);
 });
 
 // md_list
-function mdList(md_name) {
+function mdList(md_name, md_ctx) {
 	app.get('/mdlist', (req,res) => {
-		res.json(md_name) ;
+		res.json({list: md_name, md_ctx});
 	});
 }
 
-// generate api
-function mdTxt (file) {
-	app.get('/md/'+file, function (req,res) {
-		res.sendfile('./markdown/' + file + '.md') ;
+// // generate api
+function mdTxt (file, path) {
+	app.get('/md/' + file, function (req,res) {
+		res.sendfile('./markdown/' + path + '.md');
 	});
 }
 
 // // 监听3001端口
 var server = app.listen(3001);
-console.log('http://localhost:3001');
+console.log('http://localhost:3001/md');
 

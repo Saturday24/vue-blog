@@ -2,7 +2,7 @@
   <div id="app">
     <!-- nav title -->
     <div class="content">
-      <div class="logo">Leo's Blog</div>
+      <div class="logo" @click='gotoIndex'>Leo's Blog</div>
       <!-- nav bar -->
       <ul class="navBar" v-show="isShowPC">
         <li class="navBarItem" v-for="(navBarItem, idx) in navBarItems" @click="selectNav(idx)">{{navBarItem.title}}</li>
@@ -59,7 +59,11 @@ export default {
       } else {
         this.isShowList = false
       }
-
+    },
+    gotoIndex() {
+      this.$router.push({
+        path:'/home'
+      })
     }
   }
 }
@@ -104,6 +108,10 @@ body {
   top: 20px;
   font-family: '微软雅黑';
   color: #fff;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .navBar {
