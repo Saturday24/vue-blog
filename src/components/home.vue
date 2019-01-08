@@ -32,8 +32,8 @@ export default {
       let mdList = []
       this.$get('mdlist', {
       }).then((res) => {
-        console.log(res);
         this.abstractItems = res.md_ctx;
+        console.log(this.abstractItems.length);
       }).catch((err) => {
         console.log("出现错误")
         console.log(err)

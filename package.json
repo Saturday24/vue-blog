@@ -8,11 +8,13 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build": "node build/build.js",
     "md": "cd ./controller/ && node md.js",
-    "start": "npm run dev && npm run md"
+    "send": "cd ./controller/ && node send.js",
+    "start": "npm run dev"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "marked": "^0.5.2",
+    "nodemailer": "^5.0.0",
     "sass": "^1.15.2",
     "scss": "^0.2.4",
     "vue": "^2.5.2",

@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="md-page">
 		<div v-html="compiledMarkdown"></div>
 	</div>
 </template>
@@ -10,7 +10,7 @@ marked.setOptions({
 	renderer: rendererMD,
 	gfm: true,
 	tables: true,
-	breaks: false,
+	breaks: true,
 	pedantic: false,
 	sanitize: false,
 	smartLists: true,
@@ -53,8 +53,14 @@ export default {
   },
 	computed: {
 		compiledMarkdown() {
-			return marked(this.mdCtx, { sanitize: true })
+			return marked(this.mdCtx, { sanitize: false })
 		}
 	}
 }
 </script>
+<style scoped>
+  #md-page {
+    display: flex;
+    justify-content: center;
+  }
+</style>
