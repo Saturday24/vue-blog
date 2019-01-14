@@ -6,7 +6,22 @@
     </div>
     <!-- about me info wrap -->
     <div :class="meWrap">
-      <div class="me-desc"><note-abstract :abstractItems='abstractItems' class='abstractItems'></note-abstract></div>
+      <!-- left -->
+      <div :class="meDesc">
+        <!-- feihua -->
+        <div class="me-feihua">
+         <span v-for = "(feihuaItem, feihuaIdx) in feihuaItems">{{feihuaItem}}</span>
+       </div>
+        <!-- 简介 -->
+        <div class="me-intro">
+          {{meIntro}}
+        </div>
+        <!-- 技术Technology and 履历 -->
+        <div class="me-tec">
+          {{meTec}}
+        </div>
+      </div>
+      <!-- right -->
       <div class="me-info" v-show='isShowMe'>
         <p class="about-me">ABOUT ME</p>
         <p class="me-avatar">
@@ -31,27 +46,22 @@ export default {
   name: 'about',
   data () {
     return {
-      bannerTitle: 'About',
+      bannerTitle: 'About Me',
       bannerDesc: 'Not Perfect, So Need To Learn',
       avatarUrl: require('../common/image/avatar.jpg'),// 头像地址
       stickyNotesEn: 'Not Perfect, So Need To Learn.',
       stickyNotesCh: '不完善，所以需要学习。',
       isShowMe: true,
       meWrap: 'me-wrap',
-      abstractItems: [
-          {
-            title: 'isajdnaksndka',
-            desc: 'isajdnaksndka',
-            who: 'isajdnaksndka',
-            time: 'isajdnaksndka'
-          },
-          {
-            title: 'isajdnaksndka',
-            desc: 'isajdnaksndka',
-            who: 'isajdnaksndka',
-            time: 'isajdnaksndka'
-          }
-      ]
+      meDesc: 'me-desc',
+      feihuaItems: [
+        '吃的土中土，方为人上人。',
+        '每天仍有无数底层的人民在为生活艰难地奔波。'
+      ],
+      meIntro: 'This is the me introduce template, please modifie it by yourself',
+      // meIntro: '每天仍有无数底层的人民在为生活艰难地奔波',
+      // meTec: 'This is the me introduce template, please modifie it by yourself'
+      meTec: '每天仍有无数底层的人民在为生活艰难地奔波。每天仍有无数底层的人民在为生活艰难地奔波。每天仍有无数底层的人民在为生活艰难地奔波。'
     }
   },
   created() {
@@ -59,9 +69,11 @@ export default {
     if (clientWidth < 768) {
       this.isShowMe = false
       this.meWrap = 'me-wrap-center'
+      this.meDesc = 'me-desc-center'
     } else {
       this.isShowMe = true
       this.meWrap = 'me-wrap'
+      this.meDesc = 'me-desc'
     }
   },
   components: {
@@ -107,7 +119,7 @@ export default {
   .me-wrap {
     width: 100%;
     display: flex;
-    padding: 50px 10%;
+    padding: 50px 0;
   }
 
   .me-wrap-center {
@@ -117,8 +129,42 @@ export default {
     justify-content: center;
   }
 
+  /* about me left */
   .me-desc {
     width: 50%;
+    margin-left: 20%;
+  }
+
+  .me-desc-center {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .me-feihua {
+    border-left: 5px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .me-feihua span,
+  .me-intro,
+  .me-tec {
+    display: flex;
+    padding-left: 14px;
+    /* line-height: 14px; */
+    margin: 10px;
+    font-size: .95em;
+    font-style: italic;
+    text-align: left;
+  }
+
+  .me-intro,
+  .me-tec {
+    font-style: normal;
+    position: relative;
+    left: -24px;
+    top: 36px;
   }
 
   /* clientWidth * (100 - 10*2 - 50) > 200px */
@@ -128,7 +174,7 @@ export default {
     padding: 20px 0;
     border-top: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
-    margin-left: 10%;
+    margin-right: 14%;
   }
 
   .me-info .about-me {
@@ -163,5 +209,6 @@ export default {
   .sticky-notes span:nth-child(2) {
     font-family: '微软雅黑';
   }
+
 
 </style>

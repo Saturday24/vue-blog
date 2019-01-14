@@ -23,6 +23,10 @@
         </div>
         <button class="send-mail" @click="sendMail">发送</button>
       </div>
+      <div class="my-wechat">
+        <img src="../common/image/WeChat.jpeg" alt="csf151408">
+        <!-- <span>扫一扫，加我微信</span> -->
+      </div>
       <footer-link></footer-link>
     </div>
   </div>
@@ -36,7 +40,7 @@ export default {
   name: 'contact',
   data () {
     return {
-      bannerTitle: 'Leo Chen',
+      bannerTitle: 'Contact Me',
       bannerDesc: 'Not Perfect, So Need To Learn',
       name: '',
       email: '',
@@ -144,5 +148,11 @@ export default {
     outline: none;
     border: none;
     font-family: Lora,'Times New Roman',serif;
+  }
+
+  .my-wechat img {
+    margin-top: 20px;
+    width: 240px;
+    height: 240px;
   }
 </style>

@@ -3,7 +3,6 @@
     <div class="bgBanner">
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
-      <!-- <note-abstract :abstractItems='abstractItems' class='abstractItems'></note-abstract> -->
       <footer-link></footer-link>
     </div>
   </div>
@@ -22,8 +21,6 @@ export default {
     }
   },
   created() {
-    // alert('dd')
-    readMd()
   },
   components: {
     noteAbstract,

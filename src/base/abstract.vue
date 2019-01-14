@@ -46,12 +46,12 @@ export default {
 }
 
 .abstract-items:hover {
-  color: rgb(55, 114, 143);
+  color: #37728F;
   cursor: pointer;
 }
 
 .abstract-title {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: bold;
 }
 
@@ -60,13 +60,13 @@ export default {
 }
 
 .abstract-post {
-  font-size: 18px;
+  font-size: 22px;
   font-style: italic;
   font-family: Lora,'Times New Roman',serif;
 }
 
 .abstract-post-who {
-  font-size: 18px;
+  font-size: 22px;
   font-style: normal;
   color: #222;
   font-family: Lora,'Times New Roman',serif;
