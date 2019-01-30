@@ -1,5 +1,7 @@
 <template>
   <div id="home">
+    <!-- <h1>{{msg}}</h1> -->
+    <!-- <button @click='nn'>nnn</button> -->
     <div class="bgBanner">
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
@@ -30,13 +32,27 @@ export default {
       pageNum: 0,
       showBtns: false,
       showForwardBtn: false,
-      showBackwardBtn: true
+      showBackwardBtn: true,
+      // msg: 'test msg'
     }
   },
   created() {
     this._getMd();
   },
+  // computed: {
+  //   msg() {
+  //     return this.bannerDesc !== '' ? 'is not null' : 'null'
+  //   }
+  // },
+  // watch: {
+  //   msg(newval, oldval) {
+  //     console.log('new is: '+newval+';'+'old is:'+oldval)
+  //   }
+  // },
   methods: {
+    // nn() {
+    //   this.msg='sdfadaw'
+    // },
     // getFileName(){},
     _getMd() {
       let that = this

@@ -30,8 +30,8 @@ export default {
       location.href = 'https://github.com/Saturday24'
     },
     gotoWeibo() {
-      alert('goto weibo');
       // weibo address (if need)
+      location.href = 'https://weibo.com/u/2606540195'
     }
   }
 }

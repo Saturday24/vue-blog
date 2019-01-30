@@ -3,7 +3,8 @@ import router from '../../router/index'
 
 // axios 配置
 // axios.defaults.timeout = 500000000;
-axios.defaults.baseURL = 'http://212.64.26.51:3001/';
+// axios.defaults.baseURL = 'http://212.64.26.51:3001/';
+axios.defaults.baseURL = 'http://localhost:3001';
 
 // // http request 拦截器
 // axios.interceptors.request.use();
