@@ -4,14 +4,12 @@
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
       <!-- The tag title wrap  -->
-      <div class="tag-title-wrap">
-        <ul class="md-tag-Item">
-          <li v-for="(item, idx) in mdItems">
-            <span class="md-tag-Item-class" @click="showThisTag(item, idx)">{{item.classification}}
-            <span class="md-tag-Item-num">{{item.num}}</span></span>
-          </li>
-        </ul>
-      </div>
+      <ul class="tag-title-wrap">
+        <li v-for="(item, idx) in mdItems" :key="item.id" @click="showThisTag(item, idx)">
+          <span :class="idx == currentIdx && currentIdx !== '' ? ' md-tag-Item-class-selected' : 'md-tag-Item-class' ">{{item.classification}}
+          <span :class="idx == currentIdx && currentIdx !== '' ? 'md-tag-Item-num-selected' : 'md-tag-Item-num' ">{{item.num}}</span></span>
+        </li>
+      </ul>
       <footer-link></footer-link>
     </div>
   </div>
@@ -27,7 +25,8 @@ export default {
     return {
       bannerTitle: 'Leo Chen',
       bannerDesc: 'Not Perfect, So Need To Learn',
-      mdItems: []
+      mdItems: [],
+      currentIdx: ''
     }
   },
   created() {
@@ -53,6 +52,7 @@ export default {
     showThisTag(item, index) {
       // let i = JSON.parse(item)
       console.log(item.classification+index)
+      this.currentIdx = index
     }
   },
   components: {
@@ -97,26 +97,18 @@ export default {
   /* markdown tag wrap style */
 
   .tag-title-wrap {
+    margin: 10px auto;
     width: 80%;
-    margin: 0 auto;
-    background-color: #ccc;
   }
 
-  .tag-title-wrap ul {
-    margin: 10px;
-    padding: 10px;
-  }
-
-  .tag-title-wrap ul li {
-    margin: 30px;
-    /* background-color: red; */
+  .tag-title-wrap li {
+    padding: 5px 10px;
     cursor: pointer;
-    display: flex;
-    flex-wrap: nowrap;
+    display: inline-flex;
+    justify-content: flex-start;
   }
   /* class => category */
-  /* .md-tag-Item .md-tag-Item-class {
-    margin: 10px;
+  .tag-title-wrap li .md-tag-Item-class {
     font-size: 16px;
     color: #fff;
     font-family: '微软雅黑';
@@ -126,13 +118,32 @@ export default {
     position: relative;
   }
 
-  .md-tag-Item .md-tag-Item-num {
+  .tag-title-wrap li .md-tag-Item-num {
     position: absolute;
     top: 0px;
     right: 5px;
     font-weight: bold;
     font-size: 8px;
-  } */
+  }
+
+  .tag-title-wrap li .md-tag-Item-class-selected {
+    font-size: 16px;
+    color: rgba(76, 146, 176, 1.0);
+    font-family: '微软雅黑';
+    padding: 5px 20px 5px 10px;
+    border-radius: 5px;
+    background-color: red;
+    position: relative;
+  }
+
+  .tag-title-wrap li .md-tag-Item-num-selected {
+    position: absolute;
+    color: rgba(76, 146, 176, 1.0);
+    top: 0px;
+    right: 5px;
+    font-weight: bold;
+    font-size: 8px;
+  }
 
 </style>
 
