@@ -27,6 +27,7 @@
         <img src="../common/image/WeChat.jpeg" alt="csf151408">
         <!-- <span>扫一扫，加我微信</span> -->
       </div>
+      <confirm ref="confirm" @confirm="sendSuccess" text="请您确认信息，是否发送？" confirmBtnText="发送"></confirm>
       <footer-link></footer-link>
     </div>
   </div>
@@ -35,6 +36,7 @@
 <script>
 import noteAbstract from 'base/abstract'
 import footerLink from 'base/footer'
+import confirm from 'base/confirm'
 
 export default {
   name: 'contact',
@@ -59,24 +61,31 @@ export default {
       } else if (!this.message) {
           alert('请您输入详细信息～')
       } else {
-        let formData = {
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          wechat: this.wechat,
-          message: this.message,
-        }
-        this.$post('/api/email',formData).then((res) => {
-          console.log(res)
-        }).catch((err) => {
-          console.log(err)
-        })
+        this.$refs.confirm.show()
       }
+    },
+    sendSuccess() {
+      let formData = {
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        wechat: this.wechat,
+        message: this.message,
+      }
+      this.$post('/api/email',formData).then((res) => {
+        console.log(res)
+        alert('您的信息已发送成功!')
+        location.reload()
+      }).catch((err) => {
+        alert('您的信息发送失败~')
+        console.log(err)
+      })
     }
   },
   components: {
     noteAbstract,
-    footerLink
+    footerLink,
+    confirm
   }
 }
 </script>

@@ -10,6 +10,7 @@
           <span :class="idx == currentIdx && currentIdx !== '' ? 'md-tag-Item-num-selected' : 'md-tag-Item-num' ">{{item.num}}</span></span>
         </li>
       </ul>
+      <note-abstract class='abstractItems' @gotoDetail='gotoDetail'></note-abstract>
       <footer-link></footer-link>
     </div>
   </div>
@@ -39,20 +40,41 @@ export default {
        }).then((res) => {
           let categoryList = res
           categoryList.forEach((item, index) => {
-            this.mdItems.push({
-              classification: item.category,
-              num: item.data.length
-            })
+            if (item.category !== '') {
+              this.mdItems.push({
+                classification: item.category,
+                num: item.data.length
+              })
+            }
           })
-          console.log(categoryList)
+          console.log(this.mdItems[0].classification)
+          // this.$get('/mdlist', {
+          // }).then((res) => {
+          //   console.log(res.md_ctx)
+          // }).catch((err) => {
+          //   console.log(err)
+          // })
        }).catch((err) => {
           console.log(err)
        })
     },
     showThisTag(item, index) {
       // let i = JSON.parse(item)
-      console.log(item.classification+index)
+      console.log(item.classification)
       this.currentIdx = index
+    },
+    gotoDetail(obj) {
+      let title = obj.item.title
+      let time = obj.item.time
+      let who = obj.item.who
+      this.$router.push({
+        path: '/noteDetail',
+        query: {
+          title: title,
+          time: time,
+          by: who
+        }
+      })
     }
   },
   components: {
