@@ -5,6 +5,10 @@
       <p class="bannerDesc">{{bannerDesc}}</p>
       <!-- The tag title wrap  -->
       <ul class="tag-title-wrap">
+        <li @click="showAllTag()">
+          <span class="md-tag-Item-class md-allTag-Item-class">Show All
+          <span class="md-tag-Item-num md-allTag-Item-num">{{allTagNum}}</span></span>
+        </li>
         <li v-for="(item, idx) in mdItems" :key="item.id" @click="showThisTag(item, idx)">
           <span :class="idx == currentIdx && currentIdx !== '' ? ' md-tag-Item-class-selected' : 'md-tag-Item-class' ">{{item.classification}}
           <span :class="idx == currentIdx && currentIdx !== '' ? 'md-tag-Item-num-selected' : 'md-tag-Item-num' ">{{item.num}}</span></span>
@@ -29,7 +33,8 @@ export default {
       mdItems: [],
       currentIdx: '',
       isSelected: false,
-      abstractItems: []
+      abstractItems: [],
+      allTagNum: 0
     }
   },
   created() {
@@ -42,14 +47,21 @@ export default {
        this.$get('categoryList', {
        }).then((res) => {
           let categoryList = res
+          let allNum = 0
           categoryList.forEach((item, index) => {
             if (item.category !== '') {
+              allNum += item.data.length
               this.mdItems.push({
                 classification: item.category,
                 num: item.data.length
               })
             }
           })
+          // add sort func
+          this.mdItems.sort((a, b) => {
+            return b.num - a.num
+          })
+          this.allTagNum = allNum
        }).catch((err) => {
           console.log(err)
        })
@@ -71,6 +83,10 @@ export default {
       if (this.abstractItems.length > 6) {
         this.abstractItems = this.abstractItems.splice(0, 6)
       }
+    },
+    // show all tags
+    showAllTag() {
+      this._getMd()
     },
     _getMd() {
       let that = this
@@ -203,6 +219,13 @@ export default {
 
   .tag-title-wrap li span:hover {
     background-color: rgba(76, 146, 176, 1);
+  }
+
+  .md-allTag-Item-num,
+  .md-allTag-Item-class {
+    background-color: #e4e4e4!important;
+    color: rgba(76, 146, 176, 1)!important;
+    font-weight: bold;
   }
 
 </style>
