@@ -10,7 +10,7 @@
           <span :class="idx == currentIdx && currentIdx !== '' ? 'md-tag-Item-num-selected' : 'md-tag-Item-num' ">{{item.num}}</span></span>
         </li>
       </ul>
-      <note-abstract class='abstractItems' @gotoDetail='gotoDetail'></note-abstract>
+      <note-abstract class='abstractItems' ref='abstract' :abstractItems='abstractItems' @gotoDetail='gotoDetail' @forward='forward' @backward='backward'></note-abstract>
       <footer-link></footer-link>
     </div>
   </div>
@@ -27,11 +27,14 @@ export default {
       bannerTitle: 'Leo Chen',
       bannerDesc: 'Not Perfect, So Need To Learn',
       mdItems: [],
-      currentIdx: ''
+      currentIdx: '',
+      isSelected: false,
+      abstractItems: []
     }
   },
   created() {
     this._getTagTitle()
+    this._getMd()
   },
   methods: {
     // get markdown classify
@@ -47,21 +50,51 @@ export default {
               })
             }
           })
-          console.log(this.mdItems[0].classification)
-          // this.$get('/mdlist', {
-          // }).then((res) => {
-          //   console.log(res.md_ctx)
-          // }).catch((err) => {
-          //   console.log(err)
-          // })
        }).catch((err) => {
           console.log(err)
        })
     },
-    showThisTag(item, index) {
-      // let i = JSON.parse(item)
-      console.log(item.classification)
+    showThisTag(currentItem, index) {
       this.currentIdx = index
+      let currentCategory = currentItem.classification
+      let postsItem = JSON.parse(sessionStorage.getItem('postItems'))
+      // get currentItems arr func
+      let currentItems = []
+      for(let i = 0; i < postsItem.length; i++) {
+        let e = postsItem[i]
+        if (e.category === currentCategory) {
+          currentItems.push(e)
+        }
+      }
+      this.abstractItems = currentItems
+      currentItems.length > 6 ? this.$refs.abstract.show(currentItems.length) : this.$refs.abstract.hide()
+      if (this.abstractItems.length > 6) {
+        this.abstractItems = this.abstractItems.splice(0, 6)
+      }
+    },
+    _getMd() {
+      let that = this
+      let mdList = []
+      this.$get('mdlist', {
+      }).then((res) => {
+        this.abstractItems = res.md_ctx
+        // show or hide btn
+        res.md_ctx.length > 6 ? this.$refs.abstract.show(res.md_ctx.length) : this.$refs.abstract.hide()
+        window.sessionStorage.setItem('postItems', JSON.stringify(res.md_ctx))
+        // one page 5 items
+        if (this.abstractItems.length > 6) {
+          this.abstractItems = this.abstractItems.splice(0, 6)
+        }
+      }).catch((err) => {
+        console.log("出现错误")
+        console.log(err)
+      })
+    },
+    forward (obj) {
+      this.abstractItems = obj.item.slice(obj.start, obj.start + 6)
+    },
+    backward (obj) {
+      this.abstractItems = obj.item.slice(obj.start, obj.start + 6)
     },
     gotoDetail(obj) {
       let title = obj.item.title
@@ -136,7 +169,7 @@ export default {
     font-family: '微软雅黑';
     padding: 5px 20px 5px 10px;
     border-radius: 5px;
-    background-color: rgba(76, 146, 176, 1.0);
+    background-color: #A6B4E0;
     position: relative;
   }
 
@@ -150,21 +183,26 @@ export default {
 
   .tag-title-wrap li .md-tag-Item-class-selected {
     font-size: 16px;
-    color: rgba(76, 146, 176, 1.0);
+    color: #fff;
     font-family: '微软雅黑';
     padding: 5px 20px 5px 10px;
     border-radius: 5px;
-    background-color: red;
+    background-color: rgba(76, 146, 176, 1);
     position: relative;
   }
 
   .tag-title-wrap li .md-tag-Item-num-selected {
     position: absolute;
-    color: rgba(76, 146, 176, 1.0);
+    color: #fff;
     top: 0px;
     right: 5px;
     font-weight: bold;
+    background-color: rgba(76, 146, 176, 1);
     font-size: 8px;
+  }
+
+  .tag-title-wrap li span:hover {
+    background-color: rgba(76, 146, 176, 1);
   }
 
 </style>

@@ -27,7 +27,7 @@
         <img src="../common/image/WeChat.jpeg" alt="csf151408">
         <!-- <span>扫一扫，加我微信</span> -->
       </div>
-      <confirm ref="confirm" @confirm="sendSuccess" text="请您确认信息，是否发送？" confirmBtnText="发送"></confirm>
+      <confirm ref="confirm" @confirm="sendMsg" text="请您确认信息，是否发送？" confirmBtnText="发送"></confirm>
       <footer-link></footer-link>
     </div>
   </div>
@@ -64,7 +64,7 @@ export default {
         this.$refs.confirm.show()
       }
     },
-    sendSuccess() {
+    sendMsg() {
       let formData = {
         name: this.name,
         email: this.email,
@@ -73,7 +73,7 @@ export default {
         message: this.message,
       }
       this.$post('/api/email',formData).then((res) => {
-        console.log(res)
+        // console.log(res)
         alert('您的信息已发送成功!')
         location.reload()
       }).catch((err) => {

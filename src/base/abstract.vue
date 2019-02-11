@@ -25,7 +25,6 @@ export default {
   name: 'abstract',
   data () {
     return {
-      abstractItems: [],
       currentIdx: 1,
       pageNum: 0,
       showBtns: false,
@@ -34,33 +33,12 @@ export default {
     }
   },
   props: {
-    // abstractItems: {
-    //   type: Array,
-    //   default: []
-    // }
-  },
-  created() {
-    this._getMd();
+    abstractItems: {
+      type: Array,
+      default: []
+    }
   },
   methods: {
-    _getMd() {
-      let that = this
-      let mdList = []
-      this.$get('mdlist', {
-      }).then((res) => {
-        this.abstractItems = res.md_ctx
-        // show or hide btn
-        res.md_ctx.length > 6 ? this.show(res.md_ctx.length) : this.hide()
-        window.sessionStorage.setItem('postItems', JSON.stringify(res.md_ctx))
-        // one page 5 items
-        if (this.abstractItems.length > 6) {
-          this.abstractItems = this.abstractItems.splice(0, 6)
-        }
-      }).catch((err) => {
-        console.log("出现错误")
-        console.log(err)
-      })
-    },
     show(len) {
       this.showBtns = true
       // get pages' number
@@ -72,10 +50,12 @@ export default {
       this.showBtns = false
     },
     forward() {
+      // let item = JSON.parse(sessionStorage.getItem('resCtxItems') == '' ?sessionStorage.getItem('postItems') : sessionStorage.getItem('resCtxItems'))
       let item = JSON.parse(sessionStorage.getItem('postItems'))
+      // let item = postItems
       this.currentIdx -= 1
       let start = (this.currentIdx - 1) * 6
-      this.abstractItems = item.slice(start, start + 6)
+      // this.abstractItems = item.slice(start, start + 6)
       this.showBackwardBtn = true
       if (this.currentIdx === 1) {
         this.showForwardBtn = false
@@ -83,12 +63,18 @@ export default {
       } else if (this.currentIdx > 1 && this.currentIdx <= this.pageNum) {
         this.showForwardBtn = true
       }
+      this.$emit('forward', {
+        item: item,
+        start: start
+      })
     },
     backward() {
+      // let item = JSON.parse(sessionStorage.getItem('resCtxItems') == '' ?sessionStorage.getItem('postItems') : sessionStorage.getItem('resCtxItems'))
       let item = JSON.parse(sessionStorage.getItem('postItems'))
+      // let item = postItems
       this.currentIdx += 1
       let start = (this.currentIdx - 1) * 6
-      this.abstractItems = item.slice(start, start + 6)
+      // this.abstractItems = item.slice(start, start + 6)
       this.showForwardBtn = true
       if (this.currentIdx === this.pageNum) {
         this.showBackwardBtn = false
@@ -96,6 +82,10 @@ export default {
       } else if (this.currentIdx >= 1 && this.currentIdx < this.pageNum) {
         this.showBackwardBtn = true
       }
+      this.$emit('backward', {
+        item: item,
+        start: start
+      })
     },
     gotoDetail(item, idx) {
       this.$emit('gotoDetail', {

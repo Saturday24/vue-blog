@@ -5,7 +5,7 @@
     <div class="bgBanner">
       <p class="bannerTitle">{{bannerTitle}}</p>
       <p class="bannerDesc">{{bannerDesc}}</p>
-      <note-abstract class='abstractItems' @gotoDetail='gotoDetail'></note-abstract>
+      <note-abstract class='abstractItems' ref='abstract' :abstractItems='abstractItems' @gotoDetail='gotoDetail' @forward='forward' @backward='backward'></note-abstract>
       <footer-link></footer-link>
     </div>
   </div>
@@ -21,10 +21,11 @@ export default {
     return {
       bannerTitle: 'Leo Chen',
       bannerDesc: 'Not Perfect, So Need To Learn',
+      abstractItems: []
     }
   },
   created() {
-    this._getMd();
+    this._getMd()
   },
   // computed: {
   //   msg() {
@@ -44,7 +45,7 @@ export default {
       }).then((res) => {
         this.abstractItems = res.md_ctx
         // show or hide btn
-        res.md_ctx.length > 6 ? this.show(res.md_ctx.length) : this.hide()
+        res.md_ctx.length > 6 ? this.$refs.abstract.show(res.md_ctx.length) : this.$refs.abstract.hide()
         window.sessionStorage.setItem('postItems', JSON.stringify(res.md_ctx))
         // one page 5 items
         if (this.abstractItems.length > 6) {
@@ -55,15 +56,11 @@ export default {
         console.log(err)
       })
     },
-    show(len) {
-      this.showBtns = true
-      // get pages' number
-      this.pageNum = Math.ceil(len / 6)
-      // the first page
-      // this.showForwardBtn = false
+    forward (obj) {
+      this.abstractItems = obj.item.slice(obj.start, obj.start + 6)
     },
-    hide() {
-      this.showBtns = false
+    backward (obj) {
+      this.abstractItems = obj.item.slice(obj.start, obj.start + 6)
     },
     gotoDetail(obj) {
       let title = obj.item.title
