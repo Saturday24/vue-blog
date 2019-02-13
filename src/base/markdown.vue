@@ -1,6 +1,8 @@
 <template>
 	<div id="md-page">
-		<div v-html="compiledMarkdown"></div>
+    <!-- <article class="markdown-body"> -->
+      <div v-html="compiledMarkdown"><article class="markdown-body"></article></div>
+    <!-- </article> -->
 	</div>
 </template>
 <script>
@@ -53,12 +55,25 @@ export default {
   },
 	computed: {
 		compiledMarkdown() {
-			return marked(this.mdCtx, { sanitize: false })
+			return marked(this.mdCtx, { sanitize: true })
 		}
 	}
 }
 </script>
 <style scoped>
+  .markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+  }
+
+  @media (max-width: 767px) {
+    .markdown-body {
+      padding: 15px;
+    }
+  }
   #md-page {
     display: flex;
     justify-content: center;
