@@ -42,7 +42,7 @@ export default {
   width: 100%;
   height: 1px;
   background: #E5E5E5;
-  margin: 70px 0;
+  margin: 40px 0;
 }
 
 .icon:hover {

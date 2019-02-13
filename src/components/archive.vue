@@ -86,6 +86,7 @@ export default {
     },
     // show all tags
     showAllTag() {
+      this.currentIdx = ''
       this._getMd()
     },
     _getMd() {

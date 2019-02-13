@@ -110,22 +110,22 @@ export default {
 }
 
 .abstract-title {
-  font-size: 36px;
+  font-size: 28px;
   font-weight: bold;
 }
 
 .abstract-desc {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .abstract-post {
-  font-size: 22px;
+  font-size: 18px;
   font-style: italic;
   font-family: Lora,'Times New Roman',serif;
 }
 
 .abstract-post-who {
-  font-size: 22px;
+  font-size: 18px;
   font-style: normal;
   color: #222;
   font-family: Lora,'Times New Roman',serif;
