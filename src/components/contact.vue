@@ -95,7 +95,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss" rel="stylesheet/scss">
 
   input,textarea {
     border: none;
@@ -114,24 +114,22 @@ export default {
   .send-wrap {
     margin-top: 10px;
     padding: 20px;
-  }
-
-  .send-wrap span {
-    font-size: 18px;
-  }
-
-  .send-mail {
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    background: #0085a1;
-    color: #fff;
-    margin-top: 20px;
-    outline: none;
-    border: none;
-    font-family: Lora,'Times New Roman',serif;
+    span {
+      font-size: 18px;
+    }
+    .send-mail {
+      width: 100px;
+      height: 40px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      background: #0085a1;
+      color: #fff;
+      margin-top: 20px;
+      outline: none;
+      border: none;
+      font-family: Lora,'Times New Roman',serif;
+    }
   }
 
   .my-wechat img {

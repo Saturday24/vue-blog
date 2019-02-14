@@ -7,6 +7,8 @@ import {get, post, patch, put} from './common/js/http' //引入公共axios请求
 
 Vue.config.productionTip = false
 
+import 'common/style/index.scss'
+
 // 使用原型链调用封装的axios函数
 Vue.prototype.$get = get
 Vue.prototype.$post = post

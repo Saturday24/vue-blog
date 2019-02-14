@@ -1,7 +1,9 @@
 <template>
   <div id="noteDetail">
     <div class="note-wrapper">
-      <div class="note-wrap"><mark-down :mdCtx='mdCtx'></mark-down></div>
+      <div class="note-wrap">
+        <mark-down :mdCtx='mdCtx'></mark-down>
+      </div>
       <div class="goto-top" @click='gotoTop'><img src="../common/image/top.png" alt=""></div>
       <footer-link></footer-link>
     </div>
@@ -19,7 +21,7 @@ export default {
     return {
       bannerTitle: 'Leo Chen',
       bannerDesc: 'Not Perfect, So Need To Learn',
-      noteDetail: 'sdlkamd',
+      noteDetail: '',
       mdCtx: ''
     }
   },
@@ -81,7 +83,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss" rel="stylesheet/scss">
 
   .note-wrapper {
       width: 100%;
@@ -100,9 +102,9 @@ export default {
   .goto-top {
     position: absolute;
     right: 5%;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
-  .goto-top:hover {
-    cursor: pointer;
-  }
 </style>

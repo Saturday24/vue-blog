@@ -139,61 +139,55 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss" rel="stylesheet/scss">
 
   /* markdown tag wrap style */
   .tag-title-wrap {
     margin: 10px auto;
     width: 80%;
-  }
-
-  .tag-title-wrap li {
-    padding: 5px 10px;
-    cursor: pointer;
-    display: inline-flex;
-    justify-content: flex-start;
-  }
-  /* class => category */
-  .tag-title-wrap li .md-tag-Item-class {
-    font-size: 16px;
-    color: #fff;
-    font-family: '微软雅黑';
-    padding: 5px 20px 5px 10px;
-    border-radius: 5px;
-    background-color: #A6B4E0;
-    position: relative;
-  }
-
-  .tag-title-wrap li .md-tag-Item-num {
-    position: absolute;
-    top: 0px;
-    right: 5px;
-    font-weight: bold;
-    font-size: 8px;
-  }
-
-  .tag-title-wrap li .md-tag-Item-class-selected {
-    font-size: 16px;
-    color: #fff;
-    font-family: '微软雅黑';
-    padding: 5px 20px 5px 10px;
-    border-radius: 5px;
-    background-color: rgba(76, 146, 176, 1);
-    position: relative;
-  }
-
-  .tag-title-wrap li .md-tag-Item-num-selected {
-    position: absolute;
-    color: #fff;
-    top: 0px;
-    right: 5px;
-    font-weight: bold;
-    background-color: rgba(76, 146, 176, 1);
-    font-size: 8px;
-  }
-
-  .tag-title-wrap li span:hover {
-    background-color: rgba(76, 146, 176, 1);
+    li {
+      padding: 5px 10px;
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: flex-start;
+      .md-tag-Item-class {
+        font-size: 16px;
+        color: #fff;
+        font-family: '微软雅黑';
+        padding: 5px 20px 5px 10px;
+        border-radius: 5px;
+        background-color: #A6B4E0;
+        position: relative;
+      }
+      .md-tag-Item-num {
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        font-weight: bold;
+        font-size: 8px;
+      }
+      .md-tag-Item-class-selected {
+        font-size: 16px;
+        color: #fff;
+        font-family: '微软雅黑';
+        padding: 5px 20px 5px 10px;
+        border-radius: 5px;
+        background-color: rgba(76, 146, 176, 1);
+        position: relative;
+      }
+      .md-tag-Item-num-selected {
+        position: absolute;
+        color: #fff;
+        top: 0px;
+        right: 5px;
+        font-weight: bold;
+        background-color: rgba(76, 146, 176, 1);
+        font-size: 8px;
+      }
+      span:hover {
+        background-color: rgba(76, 146, 176, 1);
+      }
+    }
   }
 
   .md-allTag-Item-num,

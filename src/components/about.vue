@@ -88,7 +88,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss" rel="stylesheet/scss">
 
   /* me info wrap */
   .me-wrap {
@@ -127,9 +127,9 @@ export default {
   .me-tec {
     display: flex;
     padding-left: 14px;
-    /* line-height: 14px; */
+    line-height: 1.6rem;
     margin: 10px;
-    font-size: .95em;
+    font-size: .95rem;
     font-style: italic;
     text-align: left;
   }
@@ -150,40 +150,35 @@ export default {
     border-top: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
     margin-right: 14%;
-  }
-
-  .me-info .about-me {
-    color: #ccc;
-    font-weight: bold;
-    margin-top: 0px;
-  }
-
-  .me-info .about-me:hover {
-    color: #38849E;
-    cursor: pointer;
-  }
-
-  .me-info .me-avatar img {
-    width: 170px;
-    height: 170px;
-    margin-top: 10px;
-    border-radius: 170px;
+    .about-me {
+      color: #ccc;
+      font-weight: bold;
+      margin-top: 0px;
+      &:hover {
+        color: #38849E;
+        cursor: pointer;
+      }
+    }
+    .me-avatar img {
+      width: 170px;
+      height: 170px;
+      margin-top: 10px;
+      border-radius: 170px;
+    }
   }
 
   .sticky-notes {
     margin-top: 10px;
+    span {
+      font-size: 14px;
+      color: #ccc;
+      &:nth-child(1) {
+        font-family: Lora,'Times New Roman',serif;
+      }
+      &:nth-child(2) {
+        font-family: '微软雅黑';
+      }
+    }
   }
-
-  .sticky-notes span {
-    font-size: 14px;
-    color: #ccc;
-  }
-  .sticky-notes span:nth-child(1) {
-    font-family: Lora,'Times New Roman',serif;
-  }
-  .sticky-notes span:nth-child(2) {
-    font-family: '微软雅黑';
-  }
-
 
 </style>
