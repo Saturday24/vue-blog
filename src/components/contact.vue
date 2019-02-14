@@ -1,42 +1,44 @@
 <template>
   <div id="contact">
-    <div class="bgBanner">
-      <p class="bannerTitle">{{bannerTitle}}</p>
-      <p class="bannerDesc">{{bannerDesc}}</p>
-      <div class="send-wrap">
-        <span>若您有任何疑问，</span><br>
-        <span>请填写下面的信息给我留言，我会尽快回复您!</span>
-        <div class="input-div">
-          <input type="text" name="name" v-model.trim="name" placeholder="Name">
-        </div>
-        <div class="input-div">
-          <input type="text" name="email" v-model.trim="email" placeholder="Email">
-        </div>
-        <div class="input-div">
-          <input type="text" name="phone" v-model.trim="phone" placeholder="Phone">
-        </div>
-        <div class="input-div">
-          <input type="text" name="wechat" v-model.trim="wechat" placeholder="微信">
-        </div>
-        <div class="input-div">
-          <textarea name="message" rows="5" v-model="message" placeholder="Message"></textarea>
-        </div>
-        <button class="send-mail" @click="sendMail">发送</button>
+    <banner :bannerImgUrl="bannerImgUrl"
+            :bannerTitle="bannerTitle"
+            :bannerDesc="bannerDesc">
+    </banner>
+    <div class="send-wrap">
+      <span>若您有任何疑问，</span><br>
+      <span>请填写下面的信息给我留言，我会尽快回复您!</span>
+      <div class="input-div">
+        <input type="text" name="name" v-model.trim="name" placeholder="Name">
       </div>
-      <div class="my-wechat">
-        <img src="../common/image/WeChat.jpeg" alt="csf151408">
-        <!-- <span>扫一扫，加我微信</span> -->
+      <div class="input-div">
+        <input type="text" name="email" v-model.trim="email" placeholder="Email">
       </div>
-      <confirm ref="confirm" @confirm="sendMsg" text="请您确认信息，是否发送？" confirmBtnText="发送"></confirm>
-      <footer-link></footer-link>
+      <div class="input-div">
+        <input type="text" name="phone" v-model.trim="phone" placeholder="Phone">
+      </div>
+      <div class="input-div">
+        <input type="text" name="wechat" v-model.trim="wechat" placeholder="微信">
+      </div>
+      <div class="input-div">
+        <textarea name="message" rows="5" v-model="message" placeholder="Message"></textarea>
+      </div>
+      <button class="send-mail" @click="sendMail">发送</button>
     </div>
+    <div class="my-wechat">
+      <img src="../common/image/WeChat.jpeg" alt="csf151408">
+      <!-- <span>扫一扫，加我微信</span> -->
+    </div>
+    <confirm ref="confirm" @confirm="sendMsg" text="请您确认信息，是否发送？" confirmBtnText="发送"></confirm>
+    <footer-link></footer-link>
   </div>
 </template>
 
 <script>
+import banner from 'base/banner'
 import noteAbstract from 'base/abstract'
 import footerLink from 'base/footer'
 import confirm from 'base/confirm'
+const bannerUrl = require('common/image/post-sample-image.jpg')
 
 export default {
   name: 'contact',
@@ -44,6 +46,7 @@ export default {
     return {
       bannerTitle: 'Contact Me',
       bannerDesc: 'Not Perfect, So Need To Learn',
+      bannerImgUrl: bannerUrl,
       name: '',
       email: '',
       phone: '',
@@ -83,6 +86,7 @@ export default {
     }
   },
   components: {
+    banner,
     noteAbstract,
     footerLink,
     confirm
@@ -92,35 +96,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-  .bgBanner {
-      width: 100%;
-      height: 0;
-      padding-top: 45%;
-      background-image: url(../common/image/post-sample-image.jpg);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      position: relative;
-  }
-  .bannerTitle {
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -80px;
-    margin-top: -30px;
-  }
-  .bannerDesc {
-    color: #7e7e7e;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -110px;
-    margin-top: 20px;
-    font-size: 18px;
-  }
 
   input,textarea {
     border: none;

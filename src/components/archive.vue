@@ -1,28 +1,30 @@
 <template>
   <div id="archive">
-    <div class="bgBanner">
-      <p class="bannerTitle">{{bannerTitle}}</p>
-      <p class="bannerDesc">{{bannerDesc}}</p>
-      <!-- The tag title wrap  -->
-      <ul class="tag-title-wrap">
-        <li @click="showAllTag()">
-          <span class="md-tag-Item-class md-allTag-Item-class">Show All
-          <span class="md-tag-Item-num md-allTag-Item-num">{{allTagNum}}</span></span>
-        </li>
-        <li v-for="(item, idx) in mdItems" :key="item.id" @click="showThisTag(item, idx)">
-          <span :class="idx == currentIdx && currentIdx !== '' ? ' md-tag-Item-class-selected' : 'md-tag-Item-class' ">{{item.classification}}
-          <span :class="idx == currentIdx && currentIdx !== '' ? 'md-tag-Item-num-selected' : 'md-tag-Item-num' ">{{item.num}}</span></span>
-        </li>
-      </ul>
-      <note-abstract class='abstractItems' ref='abstract' :abstractItems='abstractItems' @gotoDetail='gotoDetail' @forward='forward' @backward='backward'></note-abstract>
-      <footer-link></footer-link>
-    </div>
+    <banner :bannerImgUrl="bannerImgUrl"
+            :bannerTitle="bannerTitle"
+            :bannerDesc="bannerDesc">
+    </banner>
+    <!-- The tag title wrap  -->
+    <ul class="tag-title-wrap">
+      <li @click="showAllTag()">
+        <span class="md-tag-Item-class md-allTag-Item-class">Show All
+        <span class="md-tag-Item-num md-allTag-Item-num">{{allTagNum}}</span></span>
+      </li>
+      <li v-for="(item, idx) in mdItems" :key="item.id" @click="showThisTag(item, idx)">
+        <span :class="idx == currentIdx && currentIdx !== '' ? ' md-tag-Item-class-selected' : 'md-tag-Item-class' ">{{item.classification}}
+        <span :class="idx == currentIdx && currentIdx !== '' ? 'md-tag-Item-num-selected' : 'md-tag-Item-num' ">{{item.num}}</span></span>
+      </li>
+    </ul>
+    <note-abstract class='abstractItems' ref='abstract' :abstractItems='abstractItems' @gotoDetail='gotoDetail' @forward='forward' @backward='backward'></note-abstract>
+    <footer-link></footer-link>
   </div>
 </template>
 
 <script>
+import banner from 'base/banner'
 import noteAbstract from 'base/abstract'
 import footerLink from 'base/footer'
+const bannerUrl = require('common/image/post-bg.jpg')
 
 export default {
   name: 'archive',
@@ -30,6 +32,7 @@ export default {
     return {
       bannerTitle: 'Leo Chen',
       bannerDesc: 'Not Perfect, So Need To Learn',
+      bannerImgUrl: bannerUrl,
       mdItems: [],
       currentIdx: '',
       isSelected: false,
@@ -128,6 +131,7 @@ export default {
     }
   },
   components: {
+    banner,
     noteAbstract,
     footerLink
   }
@@ -137,37 +141,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  .bgBanner {
-      width: 100%;
-      height: 0;
-      padding-top: 45%;
-      background-image: url(../common/image/post-bg.jpg);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      position: relative;
-  }
-  .bannerTitle {
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -80px;
-    margin-top: -30px;
-  }
-  .bannerDesc {
-    color: #7e7e7e;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -110px;
-    margin-top: 20px;
-    font-size: 18px;
-  }
-
   /* markdown tag wrap style */
-
   .tag-title-wrap {
     margin: 10px auto;
     width: 80%;
