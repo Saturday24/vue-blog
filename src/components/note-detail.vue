@@ -3,8 +3,10 @@
     <div class="note-wrapper">
       <div class="note-wrap">
         <mark-down :mdCtx='mdCtx'></mark-down>
+        <div class="goto-top" @click='gotoTop'>
+          <img src="../common/image/top.png" alt="TOP">
+        </div>
       </div>
-      <div class="goto-top" @click='gotoTop'><img src="../common/image/top.png" alt=""></div>
       <footer-link></footer-link>
     </div>
   </div>
@@ -97,6 +99,10 @@ export default {
 
   .note-wrap {
     margin: 10px 10%;
+    padding: {
+      bottom: 20px;
+      top: 20px;
+    }
   }
 
   .goto-top {
