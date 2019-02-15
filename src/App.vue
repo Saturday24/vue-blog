@@ -18,8 +18,11 @@
 </template>
 
 <script>
+import store from '@/store'
+
 export default {
   name: 'App',
+  store,
   data() {
     return {
       navBarItems: [
@@ -30,19 +33,35 @@ export default {
       ],
       isShowPC: true,
       isShowMobile: false,
-      isShowList: false
+      isShowList: false,
+      clientWidth: document.body.clientWidth
     }
   },
   created() {
-    const clientWidth = document.body.clientWidth
-    if (clientWidth < 768) {
-      console.log('change style');
+    if (this.clientWidth < 768) {
+      store.commit('clientChanged', 'mobile')
       this.isShowPC = false
       this.isShowMobile = true
     } else {
+      store.commit('clientChanged', 'pc')
       this.isShowPC = true
       this.isShowMobile = false
     }
+  },
+  mounted(){
+    var that = this;
+    window.onresize = (() => { // 定义窗口大小变更通知事件
+      this.clientWidth = document.body.clientWidth; //窗口宽度
+      if (this.clientWidth < 768) {
+        store.commit('clientChanged', 'mobile')
+        this.isShowPC = false
+        this.isShowMobile = true
+      } else {
+        store.commit('clientChanged', 'pc')
+        this.isShowPC = true
+        this.isShowMobile = false
+      }
+    });
   },
   methods: {
     selectNav(idx) {

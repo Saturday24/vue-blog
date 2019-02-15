@@ -44,7 +44,7 @@ export default {
   }
   .bannerTitle {
     color: #fff;
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: bold;
     position: absolute;
     top: 50%;
@@ -59,6 +59,6 @@ export default {
     left: 50%;
     margin-left: -110px;
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 1.2rem;
   }
 </style>

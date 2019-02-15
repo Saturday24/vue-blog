@@ -98,7 +98,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss" rel="stylesheet/scss">
 
 .abstract-items {
   margin-top: 20px;
@@ -110,22 +110,22 @@ export default {
 }
 
 .abstract-title {
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .abstract-desc {
-  font-size: 22px;
+  font-size: 1.3rem;
 }
 
 .abstract-post {
-  font-size: 18px;
+  font-size: 1.1rem;
   font-style: italic;
   font-family: Lora,'Times New Roman',serif;
 }
 
 .abstract-post-who {
-  font-size: 18px;
+  font-size: 1.1rem;
   font-style: normal;
   color: #222;
   font-family: Lora,'Times New Roman',serif;

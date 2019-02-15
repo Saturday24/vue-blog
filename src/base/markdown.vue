@@ -60,7 +60,7 @@ export default {
 	}
 }
 </script>
-<style scoped>
+<style scoped lang="scss" rel="stylesheet/scss">
   .markdown-body {
     box-sizing: border-box;
     min-width: 200px;

@@ -42,10 +42,12 @@
 import banner from 'base/banner'
 import noteAbstract from 'base/abstract'
 import footerLink from 'base/footer'
+import store from '@/store'
 const bannerUrl = require('common/image/about-bg.jpg')
 
 export default {
   name: 'about',
+  store,
   data () {
     return {
       bannerTitle: 'About Me',
@@ -69,6 +71,7 @@ export default {
   },
   created() {
     const clientWidth = document.body.clientWidth
+    console.log(this.wid);
     if (clientWidth < 768) {
       this.isShowMe = false
       this.meWrap = 'me-wrap-center'
@@ -77,6 +80,25 @@ export default {
       this.isShowMe = true
       this.meWrap = 'me-wrap'
       this.meDesc = 'me-desc'
+    }
+  },
+  computed: {
+    changeCate() {
+      return store.state.clientCategory
+    }
+  },
+  watch: {
+    changeCate(newVal,oldVal) {
+      console.log(newVal);
+      if (newVal === 'pc') {
+        this.isShowMe = true
+        this.meWrap = 'me-wrap'
+        this.meDesc = 'me-desc'
+      } else if (newVal === 'mobile') {
+        this.isShowMe = false
+        this.meWrap = 'me-wrap-center'
+        this.meDesc = 'me-desc-center'
+      }
     }
   },
   components: {
@@ -89,6 +111,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
+  @import '~common/style/index';
 
   /* me info wrap */
   .me-wrap {
