@@ -1,8 +1,8 @@
 <template>
 	<div id="md-page">
-    <!-- <article class="markdown-body"> -->
+    <article class="markdown-body">
       <div v-html="compiledMarkdown"><article class="markdown-body"></article></div>
-    <!-- </article> -->
+    </article>
 	</div>
 </template>
 <script>
