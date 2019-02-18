@@ -2,10 +2,10 @@
   <div id="abstract">
     <div class="abstract-items" v-for='(abstractItem, abstractIdx) in abstractItems' @click='gotoDetail(abstractItem, abstractIdx)'>
       <p class="abstract-title">{{abstractItem.title}}</p>
-      <p class="abstract-desc">{{abstractItem.desc}}</p>
-      <p class="abstract-post">
-        Posted by
-        <span class="abstract-post-who">{{abstractItem.who}}</span>
+<!--       <p class="abstract-desc">{{abstractItem.desc}}</p>
+ -->      <p class="abstract-post">
+        Posted <!-- by -->
+        <!-- <span class="abstract-post-who">{{abstractItem.who}}</span> -->
         on
         <span>{{abstractItem.time}}</span>
       </p>
@@ -99,6 +99,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss" rel="stylesheet/scss">
+@import '~common/style/variable';
+@import '~common/style/index';
+
+#abstract {
+  padding: {
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+}
 
 .abstract-items {
   margin-top: 20px;
@@ -110,18 +119,20 @@ export default {
 }
 
 .abstract-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
 .abstract-desc {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .abstract-post {
   font-size: 1.1rem;
   font-style: italic;
   font-family: Lora,'Times New Roman',serif;
+  position: relative;
+  top: 10px;
 }
 
 .abstract-post-who {

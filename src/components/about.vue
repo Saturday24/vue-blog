@@ -161,7 +161,7 @@ export default {
   .me-tec {
     font-style: normal;
     position: relative;
-    left: -24px;
+    left: 0;
     top: 36px;
   }
 
