@@ -29,36 +29,12 @@ export default {
   },
   created() {
     this._getMd();
-    this._getQuery();
   },
   methods: {
     _getMd() {
-      let that = this
-      let mdList = []
-      this.$get('mdlist', {
-      }).then((res) => {
-        mdList = res;
-        for (let i = 0; i < mdList.length; i++) {
-          that.$get(`md/${mdList[i]}`, {
-          }).then((res) => {
-            console.log(res);
-          }).catch((err) => {
-            console.log(err);
-            console.log('出现错误');
-          })
-          console.log(mdList[i]);
-        }
-      }).catch((err) => {
-        console.log("出现错误")
-        console.log(err)
-      })
-    },
-    _getQuery() {
-      let fileName = this.$route.query.time
-      let that = this
-      this.$get(`md/${fileName}`, {
-      }).then((res) => {
-        that.mdCtx = res
+      let title = this.$route.query.title
+      this.$post('/api/mdDetail',{title: title}).then((res) => {
+        this.mdCtx = res.data
       }).catch((err) => {
         console.log(err)
       })
@@ -111,6 +87,10 @@ export default {
     &:hover {
       cursor: pointer;
     }
+  } 
+
+  pre {
+      width: 100%; /* 必须定义宽度 */
   }
 
 </style>

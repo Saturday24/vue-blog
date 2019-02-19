@@ -1,7 +1,7 @@
 <template>
 	<div id="md-page">
     <article class="markdown-body">
-      <div v-html="compiledMarkdown"><article class="markdown-body"></article></div>
+      <div v-html="compiledMarkdown" class='md-content'></div>
     </article>
 	</div>
 </template>
@@ -60,13 +60,19 @@ export default {
 	}
 }
 </script>
-<style scoped lang="scss" rel="stylesheet/scss">
-  .markdown-body {
-    box-sizing: border-box;
-    min-width: 200px;
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 45px;
+<style scoped lang="scss" rel="stylesheet/scss">  
+
+  #md-page {
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: {
+        left: 20px;
+        right: 20px;
+      }
+    } 
   }
 
   @media (max-width: 767px) {

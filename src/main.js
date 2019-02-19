@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import {get, post, patch, put} from './common/js/http' //引入公共axios请求方法
+import 'common/style/md-reset.scss';
+import 'github-markdown-css';
 
 Vue.config.productionTip = false
 

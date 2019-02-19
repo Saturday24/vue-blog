@@ -71,8 +71,7 @@ export default {
         path: '/noteDetail',
         query: {
           title: title,
-          time: time,
-          by: who
+          time: time
         }
       })
     }
