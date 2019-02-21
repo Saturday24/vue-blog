@@ -56,14 +56,24 @@ export default {
   },
   methods: {
     sendMail() {
-      // 验证表单信息以及验证逻辑待写
+      let emailReg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+      let phoneReg = /^1[3-578]\d{9}$/;
+      // 验证表单信息(三者填写一个即可)
       if (!this.email && !this.phone && !this.wechat) {
         alert('请您填写联系方式～')
       } else if (!this.name) {
         alert('请您填写联系名字或昵称～')
       } else if (!this.message) {
           alert('请您输入详细信息～')
-      } else {
+      } else if (this.email) {
+        if (!emailReg.test(this.email)) {
+          alert('请输入正确格式的邮箱地址！')
+        }
+      } else if (this.phone) {
+        if (!phoneReg.test(this.phone)) {
+          alert('请输入正确格式的手机号！')
+        }
+      }  else {
         this.$refs.confirm.show()
       }
     },

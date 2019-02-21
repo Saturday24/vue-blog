@@ -68,16 +68,15 @@ export default {
       min-width: 200px;
       max-width: 980px;
       margin: 0 auto;
-      padding: {
-        left: 20px;
-        right: 20px;
-      }
     } 
   }
 
   @media (max-width: 767px) {
     .markdown-body {
-      padding: 15px;
+      padding: {
+        left: 5px;
+        right: 5px;
+      }
     }
   }
   #md-page {
