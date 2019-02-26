@@ -42,7 +42,7 @@ export default {
     show(len) {
       this.showBtns = true
       // get pages' number
-      this.pageNum = Math.ceil(len / 6)
+      this.pageNum = Math.ceil(len / 5)
       // the first page
       // this.showForwardBtn = false
     },
@@ -54,7 +54,7 @@ export default {
       let item = JSON.parse(sessionStorage.getItem('postItems'))
       // let item = postItems
       this.currentIdx -= 1
-      let start = (this.currentIdx - 1) * 6
+      let start = (this.currentIdx - 1) * 5
       // this.abstractItems = item.slice(start, start + 6)
       this.showBackwardBtn = true
       if (this.currentIdx === 1) {
@@ -73,7 +73,7 @@ export default {
       let item = JSON.parse(sessionStorage.getItem('postItems'))
       // let item = postItems
       this.currentIdx += 1
-      let start = (this.currentIdx - 1) * 6
+      let start = (this.currentIdx - 1) * 5
       // this.abstractItems = item.slice(start, start + 6)
       this.showForwardBtn = true
       if (this.currentIdx === this.pageNum) {

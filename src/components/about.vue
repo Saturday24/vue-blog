@@ -60,13 +60,11 @@ export default {
       meWrap: 'me-wrap',
       meDesc: 'me-desc',
       feihuaItems: [
-        '吃的土中土，方为人上人。',
-        '每天仍有无数底层的人民在为生活艰难地奔波。'
+        '我是谁，我在哪里，我该干什么？',
+        '有很多事情你当时想不通，别着急，过一段时间你再想，就想不起来了。'
       ],
-      meIntro: 'This is the me introduce template, please modifie it by yourself',
-      // meIntro: '每天仍有无数底层的人民在为生活艰难地奔波',
-      // meTec: 'This is the me introduce template, please modifie it by yourself'
-      meTec: '每天仍有无数底层的人民在为生活艰难地奔波。每天仍有无数底层的人民在为生活艰难地奔波。每天仍有无数底层的人民在为生活艰难地奔波。'
+      meIntro: 'Hola, 我是shui, 职业是FE Developer.',
+      meTec: `每天仍有无数底层的人，在为生活艰难地奔波。`
     }
   },
   created() {
@@ -80,6 +78,21 @@ export default {
       this.isShowMe = true
       this.meWrap = 'me-wrap'
       this.meDesc = 'me-desc'
+    }
+    this._getInfo()
+  },
+  methods: {
+    _getInfo() {
+      this.$get('/usrInfo',{
+      }).then((res) => {
+        console.log(res);
+        this.feihuaItems.push(res.feihuaItems1)
+        this.feihuaItems.push(res.feihuaItems2)
+        this.meIntro = res.meIntro
+        this.meTec = res.meTec
+      }).catch((err) => {
+        console.log(err);
+      })
     }
   },
   computed: {

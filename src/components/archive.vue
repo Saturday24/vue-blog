@@ -82,9 +82,9 @@ export default {
         }
       }
       this.abstractItems = currentItems
-      currentItems.length > 6 ? this.$refs.abstract.show(currentItems.length) : this.$refs.abstract.hide()
-      if (this.abstractItems.length > 6) {
-        this.abstractItems = this.abstractItems.splice(0, 6)
+      currentItems.length > 5 ? this.$refs.abstract.show(currentItems.length) : this.$refs.abstract.hide()
+      if (this.abstractItems.length > 5) {
+        this.abstractItems = this.abstractItems.splice(0, 5)
       }
     },
     // show all tags
@@ -99,11 +99,11 @@ export default {
       }).then((res) => {
         this.abstractItems = res.md_ctx
         // show or hide btn
-        res.md_ctx.length > 6 ? this.$refs.abstract.show(res.md_ctx.length) : this.$refs.abstract.hide()
+        res.md_ctx.length > 5 ? this.$refs.abstract.show(res.md_ctx.length) : this.$refs.abstract.hide()
         window.sessionStorage.setItem('postItems', JSON.stringify(res.md_ctx))
         // one page 5 items
-        if (this.abstractItems.length > 6) {
-          this.abstractItems = this.abstractItems.splice(0, 6)
+        if (this.abstractItems.length > 5) {
+          this.abstractItems = this.abstractItems.splice(0, 5)
         }
       }).catch((err) => {
         console.log("出现错误")
@@ -111,10 +111,10 @@ export default {
       })
     },
     forward (obj) {
-      this.abstractItems = obj.item.slice(obj.start, obj.start + 6)
+      this.abstractItems = obj.item.slice(obj.start, obj.start + 5)
     },
     backward (obj) {
-      this.abstractItems = obj.item.slice(obj.start, obj.start + 6)
+      this.abstractItems = obj.item.slice(obj.start, obj.start + 5)
     },
     gotoDetail(obj) {
       let title = obj.item.title
